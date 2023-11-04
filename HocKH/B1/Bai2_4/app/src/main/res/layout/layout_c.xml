@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:stretchColumns="*"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chuong trinh tinh chi so bmi"
+            android:layout_span="2"
+            android:gravity="center"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhap ten"/>
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Dr Thanh"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chieu cao"/>
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="1m65"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Can nang"/>
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="55"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:text="Tinh BMI"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BMI="/>
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="20.5"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chuan doan"/>
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="TOT"/>
+    </TableRow>
+</TableLayout>
