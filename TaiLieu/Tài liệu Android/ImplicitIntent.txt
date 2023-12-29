@@ -1,0 +1,57 @@
+--> Website:
+
+String url = ed_domain.getText().toString();
+Intent intent = new Intent(Intent.ACTION_VIEW,
+        Uri.parse(url));
+startActivity(intent);
+
+--> SMS:
+
+String phoneNo="090";//enter your phone no here
+
+int permissionCheck = ContextCompat.checkSelfPermission(
+        MainActivity.this, android.Manifest.permission.SEND_SMS);
+if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+    ActivityCompat.requestPermissions(
+            MainActivity.this,
+            new String[]{android.Manifest.permission.SEND_SMS},
+            REQUEST_CODE_PERMISSION_SEND_SMS);
+} else {
+Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+sendIntent.putExtra("sms_body"+ed_domain.getText()+"",
+        "default content");
+sendIntent.setType("vnd.android-dir/mms-sms");
+startActivity(sendIntent);
+}
+
+--> Email:
+
+Intent email = new Intent(Intent.ACTION_SEND);
+String to1="duongvt01@gmail.com";
+String to2="vti@gmail.com";
+email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to1,to2});//to
+email.putExtra(Intent.EXTRA_SUBJECT, "Gửi em");//subject
+email.putExtra(Intent.EXTRA_TEXT, ed_domain.getText()+"");//body
+
+//need this to prompts email client only
+email.setType("message/rfc822");
+
+startActivity(Intent.createChooser(email, "Choose an Email client :"));
+
+--> CallPhone:
+
+String phoneNumber = ed_domain.getText()+"";
+
+int permissionCheck = ContextCompat.checkSelfPermission(
+        MainActivity.this, android.Manifest.permission.CALL_PHONE);
+if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+    ActivityCompat.requestPermissions(
+            MainActivity.this,
+            new String[]{android.Manifest.permission.CALL_PHONE},
+            REQUEST_CODE_PERMISSION_CALL_PHONE);
+} else {
+    Intent intent = new Intent();
+    intent.setAction(Intent.ACTION_CALL);
+    intent.setData(Uri.parse("tel:" + phoneNumber));
+    startActivity(intent);
+}

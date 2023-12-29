@@ -1,0 +1,15 @@
+- phương thức setChecked, dùng để thiết lập checked. Nếu ta gọi setChecked(true) tức là cho phép control được checked, còn gọi setChecked(false) thì control sẽ bị unchecked.
+- phương thức isChecked, kiểm tra xem control có được checked hay không. Nếu có checked thì trả về true ngược lại trả về false
+
+Xử lý sự kiện khi thay đổi checkbox & radbutton:
+chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(isChecked){
+            Toast.makeText(MainActivity.this,"Checkbox chọn",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(MainActivity.this,"Checkbox không chọn",Toast.LENGTH_LONG).show();
+        }
+    }
+});
+

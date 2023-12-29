@@ -1,0 +1,37 @@
+TimePicker button event:
+
+TimePickerDialog.OnTimeSetListener callback = new TimePickerDialog.OnTimeSetListener() {
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        Date date;
+        try {
+            date = new SimpleDateFormat("HH:mm").parse(hourOfDay + ":" + minute);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        txtDT.setText(new SimpleDateFormat("hh:mm a").format(date));
+    }
+
+};
+Date cur = new Date();
+int hour = Integer.parseInt(new SimpleDateFormat("HH").format(cur));
+int min = Integer.parseInt(new SimpleDateFormat("mm").format(cur));
+TimePickerDialog pic = new TimePickerDialog(MainActivity.this, callback, hour, min, true);
+pic.setTitle("Chọn giờ");
+pic.show();
+
+DatePicker button event:
+
+DatePickerDialog.OnDateSetListener callback = new DatePickerDialog.OnDateSetListener() {
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        txtDT.setText(dayOfMonth+"/"+month+"/"+year);
+    }
+};
+Date cur = new Date();
+int year = Integer.parseInt(new SimpleDateFormat("yyyy").format(cur));
+int month = Integer.parseInt(new SimpleDateFormat("MM").format(cur));
+int date = Integer.parseInt(new SimpleDateFormat("dd").format(cur));
+DatePickerDialog pic = new DatePickerDialog(MainActivity.this, callback, year, month, date);
+pic.setTitle("Chọn ngày");
+pic.show();

@@ -1,0 +1,78 @@
+--> Gọi intent thông thường:
+	- Gửi:
+
+btnIntent.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, ChildActivity.class);
+        Bundle bundle = new Bundle();
+
+        int a = 10;
+        int b = 20;
+
+        bundle.putInt("a",a);
+        bundle.putInt("b",b);
+
+        intent.putExtra("MainData",bundle);
+        startActivity(intent);
+    }
+});
+
+	- Nhận:
+
+Intent intent = getIntent();
+Bundle bundle = intent.getBundleExtra("MainData");
+int a = bundle.getInt("a");
+int b = bundle.getInt("b");
+txtRs.setText(String.valueOf(a*b));
+
+--> Gọi intent để lấy kết quả:
+	- Gửi:
+
+Cho class muốn truyền/nhận implements Serializable
+
+onCreate():
+
+ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        result -> {
+           if (result.getResultCode() == RESULT_OK){
+               Intent data = result.getData();
+               Bundle bundle = data.getBundleExtra("ChildData");
+               int rs = bundle.getInt("result");
+               txtRsMain.setText(String.valueOf(rs));
+           }
+        });
+btnIntent.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, ChildActivity.class);
+        Bundle bundle = new Bundle();
+
+        HCN hcn = new HCN(10, 20);
+        bundle.putSerializable("hcn", hcn);
+
+        intent.putExtra("MainData",bundle);
+        launcher.launch(intent);
+    }
+});
+
+	- Nhận:
+
+btnCls.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("MainData");
+        HCN hcn = (HCN) bundle.getSerializable("hcn");
+        int result = hcn.a * hcn.b;
+
+        Intent intent1 = new Intent(ChildActivity.this, MainActivity.class);
+        Bundle bundle1 = new Bundle();
+        bundle1.putInt("result", result);
+        intent1.putExtra("ChildData", bundle1);
+        setResult(RESULT_OK, intent1);
+
+        finish();
+    }
+});

@@ -1,0 +1,77 @@
+1. id : dùng để tham chiếu tới item
+2. title : tiêu đề của item
+3. icon : hiển thị icon (@drawable/...)
+4. showAsAction:
+- always: Luôn hiển thị icon trêne actionbar
+- ifroom: hiển thị khi còn chỗ trống
+
+--> OptionMenu
+Thêm toolbar vào giao diện màn hình
+
+import androidx.appcompat.widget.Toolbar;
+
+onCreate():
+
+Toolbar toolbar = findViewById(R.id.toolbar);
+setSupportActionBar(toolbar);
+
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.option_menu,menu);
+    return super.onCreateOptionsMenu(menu);
+}
+
+@Override
+public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    int id = item.getItemId();
+    if (id == R.id.itSearch) {
+        Toast.makeText(MainActivity.this, "Search", Toast.LENGTH_SHORT).show();
+    }
+    return super.onOptionsItemSelected(item);
+}
+
+--> ContextMenu:
+	- Cho 1 thành phần bất kì:
+
+onCreate():
+
+registerForContextMenu(btn1);
+
+@Override
+public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    super.onCreateContextMenu(menu, v, menuInfo);
+    getMenuInflater().inflate(R.menu.context_menu,menu);
+}
+
+@Override
+public boolean onContextItemSelected(@NonNull MenuItem item) {
+    int id = item.getItemId();
+    if(id == R.id.ct1){
+        Toast.makeText(MainActivity.this, "Context1", Toast.LENGTH_SHORT).show();
+    }
+    return super.onContextItemSelected(item);
+}
+
+	- Cho listview:
+
+onCreate():
+
+registerForContextMenu(lv);
+
+@Override
+public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    super.onCreateContextMenu(menu, v, menuInfo);
+    getMenuInflater().inflate(R.menu.context_menu,menu);
+}
+
+@Override
+public boolean onContextItemSelected(@NonNull MenuItem item) {
+    int id = item.getItemId();
+    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+    int pos = info.position;
+    if(id == R.id.ct1){
+        list.remove(pos);
+        adapter.notifyDataSetChanged();
+    }
+    return super.onContextItemSelected(item);
+}

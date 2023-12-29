@@ -1,0 +1,18 @@
+Toast.makeText(MainActivity.this, "Khởi động", Toast.LENGTH_LONG).show();
+
+AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
+b.setTitle("Tên thông báo");
+b.setMessage("Thông điệp muốn thông báo");
+b.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        finish();
+    }
+});
+b.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        dialog.cancel();
+    }
+});
+b.create().show();

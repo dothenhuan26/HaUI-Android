@@ -1,0 +1,3 @@
+AndroidManifest:
+android:label="Màn hình phụ"
+android:theme="@style/Theme.AppCompat.Dialog" //if Dialog

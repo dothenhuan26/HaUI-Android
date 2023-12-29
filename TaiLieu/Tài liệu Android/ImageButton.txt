@@ -1,0 +1,5 @@
+Xử lý các sự kiện trên Image Button giống như Button. Để thay đổi hình ảnh bằng mã 
+lệnh là thực hiện qua phương thức setImageResource(…). Ví dụ nếu có ảnh save 
+trong drawable ta có thể đổi hình ảnh như sau.
+ImangeButton imgBtnDelete= findViewById(R.id.imgDelete);
+imgBtnDelete.setImageResource(R.drawable.imgSave)
